@@ -12,5 +12,3 @@ def test_getting_posts():
     response.assert_status_code(200).validate(GET_SCHEMA)
     response.assert_len_response(15)
     response.assert_ceo('Elon Musk')
-
-def test_ge
