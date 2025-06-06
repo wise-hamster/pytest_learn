@@ -35,3 +35,8 @@ class Response:
     def assert_ceo (self,ceo_name):
         assert self.response_json.get('ceo') == ceo_name,GlobalErrorMessages.WRONG_SEO.value
         return self
+    
+    def __str__(self):
+        return f'Status code: {self.response_status}'\
+        
+         
