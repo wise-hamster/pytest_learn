@@ -1,8 +1,6 @@
-from src.schemas.get import GET_SCHEMA
 from jsonschema import validate
 from src.enums.global_enums import GlobalErrorMessages
-
-schema = GET_SCHEMA
+from pydantic import field_validator
 
 
 class Response:
@@ -14,6 +12,13 @@ class Response:
 
     def validate (self, schema):
         validate(self.response_json, schema)
+        return self
+    
+    def validate_pydantic(self, sсhema):
+        try:
+            sсhema.model_validate(self.response_json)
+        except ValueError as e:
+            raise AssertionError(f'Pydantic validation errror: {e}') from e
         return self
 
     def assert_status_code(self,status_code):
