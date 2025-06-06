@@ -14,9 +14,9 @@ class Response:
         validate(self.response_json, schema)
         return self
     
-    def validate_pydantic(self, sсhema):
+    def validate_pydantic(self, schema):
         try:
-            sсhema.model_validate(self.response_json)
+            schema.model_validate(self.response_json)
         except ValueError as e:
             raise AssertionError(f'Pydantic validation errror: {e}') from e
         return self
