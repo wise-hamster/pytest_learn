@@ -1,10 +1,11 @@
 import requests
 from jsonschema import validate
 
+
 from src.baseclasses.response import Response
 from src.schemas.get_spaxcexdata_info_schema import GET_SCHEMA
 from configuration import SERVICE_URL
-from schemas.get_spaxcexdata_info_pydantic import spacexdata_info
+from src.schemas.get_spaxcexdata_info_pydantic import spacexdata_info
 
 def test_getting_posts():
     r = requests.get(url = SERVICE_URL)
