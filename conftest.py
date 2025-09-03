@@ -8,7 +8,10 @@ def get_numbers():
 
 
 def _calculate(a,b):
-    return a+b
+    if isinstance(a, (int ,float)) and isinstance (b, (int,float)):
+        return a+b
+    else:
+        return None
 
 @pytest.fixture
 def calculate():
@@ -16,7 +19,5 @@ def calculate():
 
 @pytest.fixture
 def make_number():
-    print('I am getting number')
     number = randrange(1,100)
-    yield number
-    print(f'Number at home {number}')
+    yield number # такой же смысл как у return, но после выполнения очищает окружение.
