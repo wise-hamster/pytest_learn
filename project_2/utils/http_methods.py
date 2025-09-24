@@ -47,3 +47,4 @@ class Http_methods:
             cookies=Http_methods.cookie
         )
         return result
+    
