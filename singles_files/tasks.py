@@ -35,3 +35,26 @@ url = "https://reqres.in/api/unknown/2"
 response = requests.get(url, headers=headers)
 data = response.json().get('data')
 print (len(data))
+
+url = "https://catfact.ninja/fact?max_length=100"
+response = requests.get(url)
+print (list(response.json()))
+
+url = "https://catfact.ninja/facts?max_length=100&limit=5"
+response = requests.get(url)
+print (list(response.json()))
+
+url = "https://dog.ceo/api/breeds/image/random/100"
+response = requests.get(url)
+response = response.json()
+
+print(len(response.get('message')))
+
+url = "https://dog.ceo/api/breed/hound/images"
+response = requests.get(url)
+response = response.json().get('message')
+count = 0
+for x in response:
+    if "hound-english" in x:
+        count +=1
+print(count)
