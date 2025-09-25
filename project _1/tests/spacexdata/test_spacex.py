@@ -1,5 +1,4 @@
 import requests
-from jsonschema import validate
 
 
 from src.baseclasses.response import Response
