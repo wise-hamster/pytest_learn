@@ -56,18 +56,17 @@ class Schema_Characters:
     url: str
 
 
-
 class CheckCorrect:
 
     @staticmethod
     def check_status_code(response,expected_status_code):
         assert response.status_code == expected_status_code, f'FAIL: Status code incorrect. Status code: {response.status_code}'
-        print('Status code correct')
+        print(f'Status code correct - {response.status_code}')
 
     @staticmethod
     def check_schema(response,schema):
         assert schema(**response.json()), f'FAIL: Incorrect body response.'  
-        print('Schema code correct')
+        print(f'Schema code correct {schema}')
 
 
 class Films:
@@ -128,4 +127,15 @@ class Test_actor:
     def test_charters_name(self, get_сharacters):
         assert get_сharacters.status_set, 'Character list is empty'
         print(f"Found {len(get_сharacters.characters)} characters")
-        print(f'{get_сharacters.characters}')
+
+    def test_get_name(self, get_сharacters):
+        characters = get_сharacters.characters
+        list_char = []
+        for char in characters:
+            response = GetResponse.get_request(url_full=char)
+            CheckCorrect.check_status_code(response,200)
+            CheckCorrect.check_schema(response, Schema_Characters)
+            list_char.append(response.json().get('name'))
+        list_char = sorted(list_char)
+        with open(file='characters', mode='w', encoding='UTF-8') as s:
+            s.write('\n'.join(list_char) + '\n')
