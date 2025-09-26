@@ -58,3 +58,29 @@ for x in response:
     if "hound-english" in x:
         count +=1
 print(count)
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------
+import json
+response_json = '''['animal', 'career', 'celebrity', 'dev', 'explicit', 'fashion', 'food', 'history', 'money', 'movie', 'music', 'political', 'religion', 'science', 'sport', 'travel']'''
+
+json_string = response_json.replace("'", '"')
+result = json.loads(json_string)
+count = 1
+for x in result:
+    print(f'{count}.{x}') 
+    count+=1
+
+response_json = '''['animal', 'career', 'celebrity', 'dev', 'explicit', 'fashion', 'food', 'history', 'money', 'movie', 'music', 'political', 'religion', 'science', 'sport', 'travel']'''
+
+json_string = response_json.replace("'", '"')
+result = json.loads(json_string)
+new_result = [raw for raw in result if raw[0] == 'c']
+for x in new_result:
+    print(x)
+
+response_json = '''['animal', 'career', 'celebrity', 'dev', 'explicit', 'fashion', 'food', 'history', 'money', 'movie', 'music', 'political', 'religion', 'science', 'sport', 'travel']'''
+
+json_string = response_json.replace("'", '"')
+result = json.loads(json_string)
+result_sort = sorted(result)
+for raw in result_sort:
+    print(raw)
